@@ -8,7 +8,7 @@ namespace BookingSystem.Domain.Entities
 {
     public class Reserva
     {
-        public int ReservaId { get; set; }
+        public int Id { get; set; }
         public int UsuarioId { get; set; }
         public int EventoId { get; set; }
         public int EspacioId { get; set; }

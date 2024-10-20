@@ -8,7 +8,7 @@ namespace BookingSystem.Domain.Entities
 {
     public class Evento
     {
-        public int EventoId { get; set; }
+        public int Id { get; set; }
         public string Nombre { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }

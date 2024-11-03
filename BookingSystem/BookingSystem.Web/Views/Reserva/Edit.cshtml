@@ -1,0 +1,43 @@
+﻿@model BookingSystem.Domain.Entities.Reserva
+
+<h1>Editar Reserva</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="UsuarioId"></label>
+        <input asp-for="UsuarioId" class="form-control" />
+        <span asp-validation-for="UsuarioId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EventoId"></label>
+        <input asp-for="EventoId" class="form-control" />
+        <span asp-validation-for="EventoId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EspacioId"></label>
+        <input asp-for="EspacioId" class="form-control" />
+        <span asp-validation-for="EspacioId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ServiciosIds"></label>
+        <input asp-for="ServiciosIds" class="form-control" placeholder="IDs de servicios separados por comas" />
+        <span asp-validation-for="ServiciosIds" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FechaReserva"></label>
+        <input asp-for="FechaReserva" type="datetime-local" class="form-control" />
+        <span asp-validation-for="FechaReserva" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CostoTotal"></label>
+        <input asp-for="CostoTotal" class="form-control" />
+        <span asp-validation-for="CostoTotal" class="text-danger"></span>
+    </div>
+    <div class="form-group form-check">
+        <input asp-for="Confirmada" class="form-check-input" type="checkbox" />
+        <label asp-for="Confirmada" class="form-check-label">Confirmada</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

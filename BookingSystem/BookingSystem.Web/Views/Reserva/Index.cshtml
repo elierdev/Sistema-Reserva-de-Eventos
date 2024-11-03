@@ -1,0 +1,36 @@
+﻿@model List<BookingSystem.Domain.Entities.Reserva>
+
+<h1>Reservas</h1>
+<a asp-action="Create" class="btn btn-primary">Crear Nueva Reserva</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuario ID</th>
+            <th>Evento ID</th>
+            <th>Espacio ID</th>
+            <th>Fecha de Reserva</th>
+            <th>Costo Total</th>
+            <th>Confirmada</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reserva in Model)
+        {
+            <tr>
+                <td>@reserva.Id</td>
+                <td>@reserva.UsuarioId</td>
+                <td>@reserva.EventoId</td>
+                <td>@reserva.EspacioId</td>
+                <td>@reserva.FechaReserva.ToString("g")</td>
+                <td>@reserva.CostoTotal.ToString("C")</td>
+                <td>@reserva.Confirmada</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@reserva.Id" class="btn btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@reserva.Id" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

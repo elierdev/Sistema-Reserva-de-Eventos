@@ -2,8 +2,8 @@
 using BookingSystem.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BookingSystem.Domain;
-using BookingSystem.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BookingSystem.Api.Controllers
 {
@@ -18,14 +18,16 @@ namespace BookingSystem.Api.Controllers
             _context = context;
         }
 
+        // GET: api/eventos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Evento>>> GetEventos()
+        public async Task<ActionResult<IEnumerable<Evento>>> ObtenerEventos()
         {
             return await _context.Eventos.ToListAsync();
         }
 
+        // GET: api/eventos/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Evento>> GetEvento(int id)
+        public async Task<ActionResult<Evento>> ObtenerEvento(int id)
         {
             var evento = await _context.Eventos.FindAsync(id);
 
@@ -37,17 +39,19 @@ namespace BookingSystem.Api.Controllers
             return evento;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Evento>> PostEvento(Evento evento)
+        // POST: api/eventos/crear
+        [HttpPost("crear")]
+        public async Task<ActionResult<Evento>> CrearEvento(Evento evento)
         {
             _context.Eventos.Add(evento);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetEvento), new { id = evento.Id }, evento);
+            return CreatedAtAction(nameof(ObtenerEvento), new { id = evento.Id }, evento);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutEvento(int id, Evento evento)
+        // PUT: api/eventos/editar/{id}
+        [HttpPut("editar/{id}")]
+        public async Task<IActionResult> EditarEvento(int id, Evento evento)
         {
             if (id != evento.Id)
             {
@@ -60,8 +64,9 @@ namespace BookingSystem.Api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEvento(int id)
+        // DELETE: api/eventos/eliminar/{id}
+        [HttpDelete("eliminar/{id}")]
+        public async Task<IActionResult> EliminarEvento(int id)
         {
             var evento = await _context.Eventos.FindAsync(id);
             if (evento == null)

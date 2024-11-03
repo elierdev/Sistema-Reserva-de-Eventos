@@ -2,8 +2,8 @@
 using BookingSystem.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BookingSystem.Domain;
-using BookingSystem.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BookingSystem.Api.Controllers
 {
@@ -18,14 +18,16 @@ namespace BookingSystem.Api.Controllers
             _context = context;
         }
 
+        // GET: api/reservas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Reserva>>> GetReservas()
+        public async Task<ActionResult<IEnumerable<Reserva>>> ObtenerReservas()
         {
             return await _context.Reservas.ToListAsync();
         }
 
+        // GET: api/reservas/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Reserva>> GetReserva(int id)
+        public async Task<ActionResult<Reserva>> ObtenerReserva(int id)
         {
             var reserva = await _context.Reservas.FindAsync(id);
 
@@ -37,17 +39,19 @@ namespace BookingSystem.Api.Controllers
             return reserva;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Reserva>> PostReserva(Reserva reserva)
+        // POST: api/reservas/crear
+        [HttpPost("crear")]
+        public async Task<ActionResult<Reserva>> CrearReserva(Reserva reserva)
         {
             _context.Reservas.Add(reserva);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetReserva), new { id = reserva.Id }, reserva);
+            return CreatedAtAction(nameof(ObtenerReserva), new { id = reserva.Id }, reserva);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutReserva(int id, Reserva reserva)
+        // PUT: api/reservas/editar/{id}
+        [HttpPut("editar/{id}")]
+        public async Task<IActionResult> EditarReserva(int id, Reserva reserva)
         {
             if (id != reserva.Id)
             {
@@ -60,8 +64,9 @@ namespace BookingSystem.Api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReserva(int id)
+        // DELETE: api/reservas/eliminar/{id}
+        [HttpDelete("eliminar/{id}")]
+        public async Task<IActionResult> EliminarReserva(int id)
         {
             var reserva = await _context.Reservas.FindAsync(id);
             if (reserva == null)

@@ -2,8 +2,8 @@
 using BookingSystem.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BookingSystem.Domain;
-using BookingSystem.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BookingSystem.Api.Controllers
 {
@@ -18,14 +18,16 @@ namespace BookingSystem.Api.Controllers
             _context = context;
         }
 
+        // GET: api/servicios
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Servicio>>> GetServicios()
+        public async Task<ActionResult<IEnumerable<Servicio>>> ObtenerServicios()
         {
             return await _context.Servicios.ToListAsync();
         }
 
+        // GET: api/servicios/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Servicio>> GetServicio(int id)
+        public async Task<ActionResult<Servicio>> ObtenerServicio(int id)
         {
             var servicio = await _context.Servicios.FindAsync(id);
 
@@ -37,17 +39,19 @@ namespace BookingSystem.Api.Controllers
             return servicio;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Servicio>> PostServicio(Servicio servicio)
+        // POST: api/servicios/crear
+        [HttpPost("crear")]
+        public async Task<ActionResult<Servicio>> CrearServicio(Servicio servicio)
         {
             _context.Servicios.Add(servicio);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetServicio), new { id = servicio.Id }, servicio);
+            return CreatedAtAction(nameof(ObtenerServicio), new { id = servicio.Id }, servicio);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutServicio(int id, Servicio servicio)
+        // PUT: api/servicios/editar/{id}
+        [HttpPut("editar/{id}")]
+        public async Task<IActionResult> EditarServicio(int id, Servicio servicio)
         {
             if (id != servicio.Id)
             {
@@ -60,8 +64,9 @@ namespace BookingSystem.Api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteServicio(int id)
+        // DELETE: api/servicios/eliminar/{id}
+        [HttpDelete("eliminar/{id}")]
+        public async Task<IActionResult> EliminarServicio(int id)
         {
             var servicio = await _context.Servicios.FindAsync(id);
             if (servicio == null)

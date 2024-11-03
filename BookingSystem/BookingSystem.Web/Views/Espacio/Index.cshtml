@@ -1,0 +1,49 @@
+﻿@model List<BookingSystem.Domain.Entities.Espacio>
+
+@{
+    ViewBag.Title = "Espacios";
+}
+
+<h1>Espacios</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nuevo Espacio</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Capacidad</th>
+            <th>Precio por Hora</th>
+            <th>Disponible</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var espacio in Model)
+            {
+                <tr>
+                    <td>@espacio.Nombre</td>
+                    <td>@espacio.Descripcion</td>
+                    <td>@espacio.Capacidad</td>
+                    <td>@espacio.PrecioPorHora.ToString("C")</td>
+                    <td>@(espacio.Disponible ? "Sí" : "No")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@espacio.Id" class="btn btn-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@espacio.Id" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">No hay espacios disponibles.</td>
+            </tr>
+        }
+    </tbody>
+</table>

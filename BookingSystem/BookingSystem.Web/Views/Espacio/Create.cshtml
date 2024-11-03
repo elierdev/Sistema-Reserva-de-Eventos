@@ -1,0 +1,43 @@
+﻿@model BookingSystem.Domain.Entities.Espacio
+
+@{
+    ViewBag.Title = "Crear Espacio";
+}
+
+<h1>Crear Espacio</h1>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Nombre" class="control-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Descripcion" class="control-label"></label>
+        <input asp-for="Descripcion" class="form-control" />
+        <span asp-validation-for="Descripcion" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Capacidad" class="control-label"></label>
+        <input asp-for="Capacidad" class="form-control" />
+        <span asp-validation-for="Capacidad" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PrecioPorHora" class="control-label"></label>
+        <input asp-for="PrecioPorHora" class="form-control" />
+        <span asp-validation-for="PrecioPorHora" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Disponible" class="control-label"></label>
+        <input asp-for="Disponible" type="checkbox" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Crear" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>

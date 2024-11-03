@@ -1,0 +1,15 @@
+﻿@model BookingSystem.Domain.Entities.Evento
+
+<h1>Eliminar Evento</h1>
+<h3>¿Está seguro de que desea eliminar este evento?</h3>
+<div>
+    <h4>@Model.Nombre</h4>
+    <p>Fecha de Inicio: @Model.FechaInicio.ToString("g")</p>
+    <p>Fecha de Fin: @Model.FechaFin.ToString("g")</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

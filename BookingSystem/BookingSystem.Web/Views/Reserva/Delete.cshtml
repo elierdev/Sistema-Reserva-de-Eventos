@@ -1,0 +1,24 @@
+﻿@model BookingSystem.Domain.Entities.Reserva
+
+<h1>Eliminar Reserva</h1>
+
+<div>
+    <h3>¿Estás seguro de que deseas eliminar esta reserva?</h3>
+    <div>
+        <h4>Detalles de la Reserva</h4>
+        <p><strong>ID:</strong> @Model.Id</p>
+        <p><strong>Usuario ID:</strong> @Model.UsuarioId</p>
+        <p><strong>Evento ID:</strong> @Model.EventoId</p>
+        <p><strong>Espacio ID:</strong> @Model.EspacioId</p>
+        <p><strong>Fecha de Reserva:</strong> @Model.FechaReserva.ToString("g")</p>
+        <p><strong>Costo Total:</strong> @Model.CostoTotal.ToString("C")</p>
+        <p><strong>Confirmada:</strong> @Model.Confirmada</p>
+    </div>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>

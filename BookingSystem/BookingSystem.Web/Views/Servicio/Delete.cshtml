@@ -1,0 +1,22 @@
+﻿@model BookingSystem.Domain.Entities.Servicio
+
+<h1>Eliminar Servicio</h1>
+
+<div>
+    <h3>¿Estás seguro de que deseas eliminar este servicio?</h3>
+    <div>
+        <h4>Detalles del Servicio</h4>
+        <p><strong>ID:</strong> @Model.Id</p>
+        <p><strong>Nombre:</strong> @Model.Nombre</p>
+        <p><strong>Descripción:</strong> @Model.Descripcion</p>
+        <p><strong>Precio:</strong> @Model.Precio.ToString("C")</p>
+        <p><strong>Disponible:</strong> @(Model.Disponible ? "Sí" : "No")</p>
+    </div>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>

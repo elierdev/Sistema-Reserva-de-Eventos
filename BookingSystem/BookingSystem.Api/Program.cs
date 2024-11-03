@@ -3,17 +3,35 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configurar DbContext con SQL Server
 builder.Services.AddDbContext<BookingSystemContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BookingSystemDb")));
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+
+
+
+// Configuración de Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Configuración de CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        policy => policy
+            .WithOrigins("https://localhost:7155") 
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+    );
+});
+
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
+
+// Configuración del pipeline de solicitud HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -25,5 +43,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowSpecificOrigin");
 
 app.Run();

@@ -1,0 +1,34 @@
+﻿@model BookingSystem.Domain.Entities.Evento
+
+<h1>Editar Evento</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Nombre"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FechaInicio"></label>
+        <input asp-for="FechaInicio" type="datetime-local" class="form-control" />
+        <span asp-validation-for="FechaInicio" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FechaFin"></label>
+        <input asp-for="FechaFin" type="datetime-local" class="form-control" />
+        <span asp-validation-for="FechaFin" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EspacioId"></label>
+        <input asp-for="EspacioId" class="form-control" />
+        <span asp-validation-for="EspacioId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="UsuarioId"></label>
+        <input asp-for="UsuarioId" class="form-control" />
+        <span asp-validation-for="UsuarioId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

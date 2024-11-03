@@ -1,0 +1,53 @@
+﻿@model BookingSystem.Domain.Entities.Espacio
+
+@{
+    ViewBag.Title = "Eliminar Espacio";
+}
+
+<h1>Eliminar Espacio</h1>
+
+<h3>¿Está seguro de que desea eliminar este espacio?</h3>
+<div>
+    <h4>Espacio</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Capacidad)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Capacidad)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PrecioPorHora)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PrecioPorHora)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Disponible)
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.Disponible ? "Sí" : "No")
+        </dd>
+    </dl>
+</div>
+
+<form asp-action="DeleteConfirmed">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>

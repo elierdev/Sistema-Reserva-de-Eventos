@@ -1,0 +1,30 @@
+﻿@model List<BookingSystem.Domain.Entities.Evento>
+
+<h1>Eventos</h1>
+<a asp-action="Create" class="btn btn-primary">Crear Nuevo Evento</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var evento in Model)
+        {
+            <tr>
+                <td>@evento.Id</td>
+                <td>@evento.Nombre</td>
+                <td>@evento.FechaInicio.ToString("g")</td>
+                <td>@evento.FechaFin.ToString("g")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@evento.Id" class="btn btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@evento.Id" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

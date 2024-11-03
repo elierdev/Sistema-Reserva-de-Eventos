@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BookingSystem.Domain.Entities;
-using System.Collections.Generic;
-using System.Reflection.Emit;
-using BookingSystem.Domain.Entities;
 
 namespace BookingSystem.Domain
 {
@@ -19,6 +16,24 @@ namespace BookingSystem.Domain
         public DbSet<Servicio> Servicios { get; set; }
         public DbSet<Reserva> Reservas { get; set; }
 
-        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Configuración para Espacio
+            modelBuilder.Entity<Espacio>()
+                .Property(e => e.PrecioPorHora)
+                .HasColumnType("decimal(18,2)");
+
+            // Configuración para Reserva
+            modelBuilder.Entity<Reserva>()
+                .Property(r => r.CostoTotal)
+                .HasColumnType("decimal(18,2)");
+
+            // Configuración para Servicio
+            modelBuilder.Entity<Servicio>()
+                .Property(s => s.Precio)
+                .HasColumnType("decimal(18,2)");
+        }
     }
 }

@@ -2,8 +2,8 @@
 using BookingSystem.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BookingSystem.Domain;
-using BookingSystem.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BookingSystem.Api.Controllers
 {
@@ -18,14 +18,16 @@ namespace BookingSystem.Api.Controllers
             _context = context;
         }
 
+        // GET: api/usuarios
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
+        public async Task<ActionResult<IEnumerable<Usuario>>> ObtenerUsuarios()
         {
             return await _context.Usuarios.ToListAsync();
         }
 
+        // GET: api/usuarios/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Usuario>> GetUsuario(int id)
+        public async Task<ActionResult<Usuario>> ObtenerUsuario(int id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);
 
@@ -37,17 +39,19 @@ namespace BookingSystem.Api.Controllers
             return usuario;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
+        // POST: api/usuarios/crear
+        [HttpPost("crear")]
+        public async Task<ActionResult<Usuario>> CrearUsuario(Usuario usuario)
         {
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetUsuario), new { id = usuario.Id }, usuario);
+            return CreatedAtAction(nameof(ObtenerUsuario), new { id = usuario.Id }, usuario);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
+        // PUT: api/usuarios/editar/{id}
+        [HttpPut("editar/{id}")]
+        public async Task<IActionResult> EditarUsuario(int id, Usuario usuario)
         {
             if (id != usuario.Id)
             {
@@ -60,8 +64,9 @@ namespace BookingSystem.Api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsuario(int id)
+        // DELETE: api/usuarios/eliminar/{id}
+        [HttpDelete("eliminar/{id}")]
+        public async Task<IActionResult> EliminarUsuario(int id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);
             if (usuario == null)

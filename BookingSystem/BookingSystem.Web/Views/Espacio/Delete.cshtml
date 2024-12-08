@@ -4,50 +4,46 @@
     ViewBag.Title = "Eliminar Espacio";
 }
 
-<h1>Eliminar Espacio</h1>
-
-<h3>¿Está seguro de que desea eliminar este espacio?</h3>
-<div>
-    <h4>Espacio</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Capacidad)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Capacidad)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PrecioPorHora)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PrecioPorHora)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Disponible)
-        </dt>
-        <dd class="col-sm-10">
-            @(Model.Disponible ? "Sí" : "No")
-        </dd>
-    </dl>
-</div>
-
-<form asp-action="DeleteConfirmed">
-    <input type="hidden" asp-for="Id" />
-    <div class="form-group">
-        <input type="submit" value="Eliminar" class="btn btn-danger" />
-        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+<div class="container mt-4">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">Eliminar Espacio</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="text-center mb-4">¿Está seguro de que desea eliminar este espacio?</h5>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th>Nombre</th>
+                            <td>@Html.DisplayFor(model => model.Nombre)</td>
+                        </tr>
+                        <tr>
+                            <th>Descripción</th>
+                            <td>@Html.DisplayFor(model => model.Descripcion)</td>
+                        </tr>
+                        <tr>
+                            <th>Capacidad</th>
+                            <td>@Html.DisplayFor(model => model.Capacidad)</td>
+                        </tr>
+                        <tr>
+                            <th>Precio por Hora</th>
+                            <td>@Html.DisplayFor(model => model.PrecioPorHora)</td>
+                        </tr>
+                        <tr>
+                            <th>Disponible</th>
+                            <td>@(Model.Disponible ? "Sí" : "No")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+            <form asp-action="DeleteConfirmed" class="d-inline">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </div>
     </div>
-</form>
+</div>

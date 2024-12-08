@@ -18,10 +18,10 @@ namespace BookingSystem.Domain.Entities
         public DateTime FechaFin { get; set; }
 
         [JsonPropertyName("usuarioId")]
-        public int UsuarioId { get; set; }
+        public int? UsuarioId { get; set; }
 
         [JsonPropertyName("espacioId")]
-        public int EspacioId { get; set; }
+        public int? EspacioId { get; set; }
 
         [JsonPropertyName("activo")]
         public bool Activo { get; set; }

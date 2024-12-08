@@ -1,34 +1,47 @@
 ﻿@model BookingSystem.Domain.Entities.Evento
 
-<h1>Editar Evento</h1>
+@{
+    ViewBag.Title = "Editar Evento";
+}
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="Id" />
-    <div class="form-group">
-        <label asp-for="Nombre"></label>
-        <input asp-for="Nombre" class="form-control" />
-        <span asp-validation-for="Nombre" class="text-danger"></span>
+<div class="container mt-4">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Editar Evento</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="mb-3">
+                    <label asp-for="Nombre" class="form-label fw-bold"></label>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="FechaInicio" class="form-label fw-bold"></label>
+                    <input asp-for="FechaInicio" type="datetime-local" class="form-control" />
+                    <span asp-validation-for="FechaInicio" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="FechaFin" class="form-label fw-bold"></label>
+                    <input asp-for="FechaFin" type="datetime-local" class="form-control" />
+                    <span asp-validation-for="FechaFin" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="EspacioId" class="form-label fw-bold"></label>
+                    <input asp-for="EspacioId" class="form-control" />
+                    <span asp-validation-for="EspacioId" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="UsuarioId" class="form-label fw-bold"></label>
+                    <input asp-for="UsuarioId" class="form-control" />
+                    <span asp-validation-for="UsuarioId" class="text-danger"></span>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary me-2">Guardar</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="FechaInicio"></label>
-        <input asp-for="FechaInicio" type="datetime-local" class="form-control" />
-        <span asp-validation-for="FechaInicio" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="FechaFin"></label>
-        <input asp-for="FechaFin" type="datetime-local" class="form-control" />
-        <span asp-validation-for="FechaFin" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="EspacioId"></label>
-        <input asp-for="EspacioId" class="form-control" />
-        <span asp-validation-for="EspacioId" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="UsuarioId"></label>
-        <input asp-for="UsuarioId" class="form-control" />
-        <span asp-validation-for="UsuarioId" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
-</form>
+</div>

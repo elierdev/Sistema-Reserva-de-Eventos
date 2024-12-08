@@ -3,6 +3,49 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bienvenido al Sistema de Reservas</h1>
+    <p class="lead">Gestiona tus espacios, eventos y servicios de manera eficiente.</p>
+    <p>Este sistema te permite organizar tus reservas y gestionar recursos de forma centralizada y fácil de usar.</p>
+</div>
+
+<div class="row text-center mt-5">
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title text-primary">Espacios</h5>
+                <p class="card-text">Administra y organiza los espacios disponibles para tus eventos y actividades.</p>
+                <a class="btn btn-primary" asp-controller="Espacio" asp-action="Index">Ir a Espacios</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title text-info">Servicios</h5>
+                <p class="card-text">Controla los servicios adicionales como catering, equipos y más.</p>
+                <a class="btn btn-info" asp-controller="Servicio" asp-action="Index">Ir a Servicios</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title text-warning">Eventos</h5>
+                <p class="card-text">Organiza tus eventos y accede a reportes de ocupación y facturación.</p>
+                <a class="btn btn-warning" asp-controller="Evento" asp-action="Index">Ir a Eventos</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title text-danger">Usuarios</h5>
+                <p class="card-text">Gestiona la información de los usuarios de forma segura y organizada.</p>
+                <a class="btn btn-danger" asp-controller="Usuario" asp-action="Index">Ir a Usuarios</a>
+            </div>
+        </div>
+    </div>
 </div>

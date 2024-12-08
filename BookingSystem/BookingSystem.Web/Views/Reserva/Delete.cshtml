@@ -1,24 +1,38 @@
 ﻿@model BookingSystem.Domain.Entities.Reserva
-
-<h1>Eliminar Reserva</h1>
-
-<div>
-    <h3>¿Estás seguro de que deseas eliminar esta reserva?</h3>
-    <div>
-        <h4>Detalles de la Reserva</h4>
-        <p><strong>ID:</strong> @Model.Id</p>
-        <p><strong>Usuario ID:</strong> @Model.UsuarioId</p>
-        <p><strong>Evento ID:</strong> @Model.EventoId</p>
-        <p><strong>Espacio ID:</strong> @Model.EspacioId</p>
-        <p><strong>Fecha de Reserva:</strong> @Model.FechaReserva.ToString("g")</p>
-        <p><strong>Costo Total:</strong> @Model.CostoTotal.ToString("C")</p>
-        <p><strong>Confirmada:</strong> @Model.Confirmada</p>
-    </div>
-    <form asp-action="Delete" method="post">
-        <input type="hidden" asp-for="Id" />
-        <div class="form-group">
-            <button type="submit" class="btn btn-danger">Eliminar</button>
-            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+@{
+    ViewBag.Title = "Eliminar Reserva";
+}
+<div class="container mt-4">
+    <h2 class="mb-4">Eliminar Reserva</h2>
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <h3>¿Estás seguro de que deseas eliminar esta reserva?</h3>
+            <div class="mb-4">
+                <h4>Detalles de la Reserva</h4>
+                <dl class="row">
+                    <dt class="col-sm-3"><strong>ID:</strong></dt>
+                    <dd class="col-sm-9">@Model.Id</dd>
+                    <dt class="col-sm-3"><strong>Usuario ID:</strong></dt>
+                    <dd class="col-sm-9">@Model.UsuarioId</dd>
+                    <dt class="col-sm-3"><strong>Evento ID:</strong></dt>
+                    <dd class="col-sm-9">@Model.EventoId</dd>
+                    <dt class="col-sm-3"><strong>Espacio ID:</strong></dt>
+                    <dd class="col-sm-9">@Model.EspacioId</dd>
+                    <dt class="col-sm-3"><strong>Fecha de Reserva:</strong></dt>
+                    <dd class="col-sm-9">@Model.FechaReserva.ToString("g")</dd>
+                    <dt class="col-sm-3"><strong>Costo Total:</strong></dt>
+                    <dd class="col-sm-9">@Model.CostoTotal.ToString("C")</dd>
+                    <dt class="col-sm-3"><strong>Confirmada:</strong></dt>
+                    <dd class="col-sm-9">@Model.Confirmada ? "Sí" : "No"</dd>
+                </dl>
+            </div>
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-danger">Eliminar Reserva</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>

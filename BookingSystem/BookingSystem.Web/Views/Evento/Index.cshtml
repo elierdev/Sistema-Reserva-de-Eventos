@@ -1,30 +1,51 @@
 ﻿@model List<BookingSystem.Domain.Entities.Evento>
 
-<h1>Eventos</h1>
-<a asp-action="Create" class="btn btn-primary">Crear Nuevo Evento</a>
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Fecha Inicio</th>
-            <th>Fecha Fin</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var evento in Model)
-        {
-            <tr>
-                <td>@evento.Id</td>
-                <td>@evento.Nombre</td>
-                <td>@evento.FechaInicio.ToString("g")</td>
-                <td>@evento.FechaFin.ToString("g")</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@evento.Id" class="btn btn-warning">Editar</a>
-                    <a asp-action="Delete" asp-route-id="@evento.Id" class="btn btn-danger">Eliminar</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@{
+    ViewBag.Title = "Eventos";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="fw-bold">Eventos</h1>
+        <a asp-action="Create" class="btn btn-primary">Crear Nuevo Evento</a>
+    </div>
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Fecha Inicio</th>
+                        <th scope="col">Fecha Fin</th>
+                        <th scope="col" class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var evento in Model)
+                        {
+                            <tr>
+                                <td>@evento.Id</td>
+                                <td>@evento.Nombre</td>
+                                <td>@evento.FechaInicio.ToString("g")</td>
+                                <td>@evento.FechaFin.ToString("g")</td>
+                                <td class="text-center">
+                                    <a asp-action="Edit" asp-route-id="@evento.Id" class="btn btn-warning btn-sm me-2">Editar</a>
+                                    <a asp-action="Delete" asp-route-id="@evento.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center">No hay eventos disponibles.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,15 +1,31 @@
 ﻿@model BookingSystem.Domain.Entities.Evento
 
-<h1>Eliminar Evento</h1>
-<h3>¿Está seguro de que desea eliminar este evento?</h3>
-<div>
-    <h4>@Model.Nombre</h4>
-    <p>Fecha de Inicio: @Model.FechaInicio.ToString("g")</p>
-    <p>Fecha de Fin: @Model.FechaFin.ToString("g")</p>
-</div>
+@{
+    ViewBag.Title = "Eliminar Evento";
+}
 
-<form asp-action="Delete" method="post">
-    <input type="hidden" asp-for="Id" />
-    <button type="submit" class="btn btn-danger">Eliminar</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
-</form>
+<div class="container mt-4">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">Eliminar Evento</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="text-danger">¿Está seguro de que desea eliminar este evento?</h5>
+            <hr />
+            <div class="mb-3">
+                <h6 class="fw-bold">Detalles del Evento</h6>
+                <p><strong>Nombre:</strong> @Model.Nombre</p>
+                <p><strong>Fecha de Inicio:</strong> @Model.FechaInicio.ToString("g")</p>
+                <p><strong>Fecha de Fin:</strong> @Model.FechaFin.ToString("g")</p>
+            </div>
+
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-danger me-2">Eliminar</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
